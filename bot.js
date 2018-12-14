@@ -1,88 +1,142 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
-const client2 = new Discord.Client();
+                    const { Client, RichEmbed } = require('discord.js');
+const client = new Client();
 
 client.on('ready', () => {
-   console.log(`----------------`);
-   console.log(`Credit Farmm - Script By : Kahrbaa `);
-   console.log(`----------------`);
-   console.log(`Loadinng`);
-   console.log(`Loadinng.`);
-   console.log(`Loadinng..`);
-   console.log(`Loadinng...`);
-   console.log(`This Bots Online ' `);
-   console.log(`----------------`);
+  client.user.setGame(`أصبر ف الصبر من ألأيمان .`,'https://www.twitch.tv/v5bz');
+  console.log('By Mahdi !!');
 });
+
+
+
+
+
+
+
+
+
+
+
+client.login("NTIzMDEzMzczODkwMTM0MDE2.DvTWAA.-hIPIzFGmpCiqe1JBlO_uMRQLbs")
+
+
+client.on('message', msg => {
+  if (msg.content === 'السلام عليكم') {      
+    msg.reply("وعليكم ألسلأم")
+  }
+});
+
+const bannedwords = [
+    "كسمك",
+    "كس اختك",
+    "يا قحبة",
+    "يا ابن القحبة",
+    "كس امك",
+    "ينعن امك"
+
+  ];
+
+client.on('message',  message => {
+  if(bannedwords.some(word => message.content.includes(word))) {
+    message.delete()
+    message.reply(" عيب ي بأبأ  ").then(msg => {msg.delete(5000)});;
+  };
+});
+
+client.on('message', msg => {
+  if (msg.content === 'باك') {      
+    msg.reply("ولكم نورت السيرفر ي كنق !")
+  }
+});
+
+client.on('ready', () => {
+    setInterval(function(){
+        client.guilds.get('510598058648535051').roles.find('name', 'new role').edit({color: 'RANDOM'})
+    },12000);
+  
+
+})
+
+client.on('message', message => {
+        if(message.content === 'قفل الشات') {
+        if(!message.channel.guild) return;
+        if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('You Dont Have Perms ❌');
+               message.channel.overwritePermissions(message.guild.id, {
+               READ_MESSAGES: false
+   })
+                message.channel.send('Channel Hided Successfully ! ✅  ')
+   }
+  });
 
 
 client.on('message', message => {
-    if(message.content === '-راتب'){
-        message.channel.send('#daily')
-    }
+        if(message.content === 'فتح الشات') {
+        if(!message.channel.guild) return;
+        if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('❌');
+               message.channel.overwritePermissions(message.guild.id, {
+               READ_MESSAGES: true
+   })
+                message.channel.send('Done')
+   }
+  });
+
+client.on('message', message => {
+  if(message.content.startsWith('!invites')) {
+   message.guild.fetchInvites().then(invs => {
+     let user = message.mentions.users.first() || message.author
+     let personalInvites = invs.filter(i => i.inviter.id === user.id);
+     let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+message.channel.send(`${user} has ${inviteCount} invites.`);
+});
+ }
+});
+
+
+client.on("message", message => {
+    if (message.content.startsWith('!clear')) {
+        if(!message.channel.guild) return message.reply('**❌ اسف لكن هذا الامر للسيرفرات فقط **');         
+if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('**⚠  لا يوجد لديك صلاحية لمسح الشات**');
+var msg;
+msg = parseInt();
+
+message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+message.channel.sendMessage("", {embed: {
+title: "``تــم مسح الشات ``",
+color: 0x06DF00,
+footer: {
+  
+}
+}}).then(msg => {msg.delete(3000)});
+                  }
+
+
 });
 
 client.on('message', message => {
-    if(message.content === '-مبلغ'){
-        message.channel.send('#credits')
+    var args = message.content.split(/[ ]+/)
+    if(message.content.includes('discord.gg')){
+		if(!message.channel.guild) return;
+        message.delete()
+    return message.reply(`** No Invite Links للاسف ما تقدر تنشر :) ههههههههههايي 😠 ! **`)
     }
 });
+
+
 
 client.on('message', message => {
-    if(message.content === '-ريب'){
-        message.channel.send('#credits')
-    }
-});
-
-client2.on('message', message => {
-    if(message.content === '-راتب'){
-        message.channel.send('#daily')
-    }
-});
-
-client2.on('message', message => {
-    if(message.content === '-مبلغ'){
-        message.channel.send('#credits')
-    }
-});
-
-client2.on('message', message => {
-    if(message.content === '-ريب'){
-        message.channel.send('#credits')
-    }
-});
-
-
-
-client.on('message', message => { // لا تغير شئ عشان ما تخرب الدنيا
-if (message.content === '!spam') {
-      let count = 0;
-      let ecount = 0;
-      for(let x = 0; x < 90000; x++) {
-        message.channel.send(`**Credit Spam , Frame , Credit By Kahrba , Farm Credit By Kahrba, ez Farm - كردت اسبام اسبام اسبام اوف ءف اح اح نار ج **[ " ${x} " ]`)
-          .then(m => {
-            count++;
-          })
-          
+        var prefix = "$";
+        if (message.author.bot) return;
+        if (!message.content.startsWith(prefix)) return;
+      
+        let command = message.content.split(" ")[0];
+        command = command.slice(prefix.length);
+      
+      
+      let args = message.content.split(" ").slice(1);
+      let x = args.join(" ")
+        if(message.content.startsWith(prefix + 'Say')) {
+            message.channel.send(''+x);
+                message.delete(999)
         }
-      }
-});
-
-client2.on('message', message => { // لا تغير شئ عشان ما تخرب الدنيا
-if (message.content === '!spam') {
-      let count = 0;
-      let ecount = 0;
-      for(let x = 0; x < 90000; x++) {
-        message.channel.send(`**Credit Spam , Frame , Credit By Kahrba , Farm Credit By Kahrba, ez Farm - كردت اسبام اسبام اسبام اوف ءف اح اح نار ج **[ " ${x} " ]`)
-          .then(m => {
-            count++;
-          })
-          
-        }
-      }
-});
-
-
-
-
-client.login(process.env.TOKEN);// لا تغير فيها شيء
-client2.login(process.env.TOKEN2);// لا تغير فيها شيء
+        
+       
+      });
