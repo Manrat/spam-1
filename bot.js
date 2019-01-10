@@ -16,7 +16,7 @@ client.on('ready', () => {
 
 
 
-client.login("NTIzMDEzMzczODkwMTM0MDE2.DvTWAA.-hIPIzFGmpCiqe1JBlO_uMRQLbs")
+client.login("NTI3NDYwNjYzMjEyMTEzOTM3.DxjFmg.jOfEXHQ74s7MwfEpIbtyxHlRCHY")
 
 
 client.on('message', msg => {
